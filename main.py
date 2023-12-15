@@ -15,6 +15,8 @@ dp = Dispatcher()
 value = ''
 old_value = ''
 
+# Делаем интерфейс калькулятора:
+
 builder = InlineKeyboardBuilder()
 builder.row(types.InlineKeyboardButton(text=' ', callback_data='no'),
                 types.InlineKeyboardButton(text='C', callback_data='C'),
@@ -44,15 +46,6 @@ async def cmd_start(message):
         await bot.send_message(message.from_user.id, '0', reply_markup=builder.as_markup())
     else:
         await bot.send_message(message.from_user.id, value, reply_markup=builder.as_markup())
-
-        # await bot.send_message(message.from_user.id, '0', reply_markup=builder.as_markup())
-
-# @dp.message(F.text == 'Start calculating')
-# async def calculating(message: types.Message):
-
-    # await message.answer('Нажмите на кнопку:', reply_markup=builder.as_markup())
-
-
 
 @dp.callback_query()
 async def callbacks(callback: types.CallbackQuery):
@@ -84,12 +77,6 @@ async def callbacks(callback: types.CallbackQuery):
 
     if value == 'Ошибка':
         value = ''
-
-
-
-
-
-
 
 
 
